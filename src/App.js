@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import './App.css';
 import ImageCaption from './ImageCaption';
 import Layout from './Layout';
-import GuessTheNumber from './GuessTheNumber';
-import YouClicked from './YouClicked';
-import CharacterCounter from './CharacterCounter';
-import CharacterLimit from './CharacterLimit';
+// import GuessTheNumber from './GuessTheNumber';
+// import YouClicked from './YouClicked';
+// import CharacterCounter from './CharacterCounter';
+// import CharacterLimit from './CharacterLimit';
+// import NumberGuessing from './NumberGuessing';
+import GithubProfile from './GithubProfile';
 
 class App extends Component {
     renderImage(img){
@@ -19,10 +21,7 @@ class App extends Component {
           <div className="App">
               <h2>Testing Layout</h2>
               <Layout>
-                  <GuessTheNumber numberToGuess={20}></GuessTheNumber>
-                  <YouClicked></YouClicked>
-                  <CharacterCounter></CharacterCounter>
-                  <CharacterLimit limit={140}></CharacterLimit>
+                  <GithubProfile username="lrossy"></GithubProfile>
               </Layout>
           </div>
         );
