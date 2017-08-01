@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types'
 import $ from 'jquery';
 
 export default class GithubProfile extends React.Component {
@@ -10,32 +9,51 @@ export default class GithubProfile extends React.Component {
     }
     componentDidMount(){
         let url = `https://api.github.com/users/${this.props.username}`;
-
-
+        // let user = {
+        //     avatar: 'url',
+        //     login: 'lrossy',
+        //     name: 'luke',
+        //     bio: 'bio'
+        // };
+        // console.log('componentDidMount',  user);
+        //
+        // this.setState({
+        //     user
+        // });
         $.getJSON( url, function( data ) {
-            console.log(' data.avatar_url',  data);
-
-            this.setState({
+            let userData = {
                 avatar: data.avatar_url,
                 login: data.login,
                 name: data.name,
                 bio: data.bio
+            };
+            this.setState({
+                user: userData
             })
         }.bind(this));
     }
 
 
     render() {
-
-        return (
-            <div className="github-user">
-                <img className="github-user__avatar" src={this.state.avatar}/>
-                <div className="github-user__info">
-                    <p>{this.state.login} ({this.state.name})</p>
-                    <p>{this.state.bio} </p>
+        if(this.state.user){
+            return (
+                <div className="github-user">
+                    <img className="github-user__avatar" src={this.state.user.avatar}/>
+                    <div className="github-user__info">
+                        <p>{this.state.user.login} ({this.state.user.name})</p>
+                        <p>{this.state.user.bio} </p>
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        }
+        else{
+            return (
+                <div className="github-user">
+                    <p> loading ...</p>
+                </div>
+            );
+        }
+
 
     }
 };
