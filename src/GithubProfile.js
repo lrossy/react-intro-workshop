@@ -9,36 +9,22 @@ export default class GithubProfile extends React.Component {
     }
     componentDidMount(){
         let url = `https://api.github.com/users/${this.props.username}`;
-        // let user = {
-        //     avatar: 'url',
-        //     login: 'lrossy',
-        //     name: 'luke',
-        //     bio: 'bio'
-        // };
-        // console.log('componentDidMount',  user);
-        //
-        // this.setState({
-        //     user
-        // });
+
         $.getJSON( url, function( data ) {
-            let userData = {
-                avatar: data.avatar_url,
-                login: data.login,
-                name: data.name,
-                bio: data.bio
-            };
             this.setState({
-                user: userData
+                user: data
             })
         }.bind(this));
     }
 
 
     render() {
+        console.log('this.state', JSON.stringify(this.state, undefined, 2));
+
         if(this.state.user){
             return (
                 <div className="github-user">
-                    <img className="github-user__avatar" src={this.state.user.avatar}/>
+                    <img className="github-user__avatar" src={this.state.user.avatar_url}/>
                     <div className="github-user__info">
                         <p>{this.state.user.login} ({this.state.user.name})</p>
                         <p>{this.state.user.bio} </p>
@@ -56,9 +42,7 @@ export default class GithubProfile extends React.Component {
 
 
     }
+
 };
 
 
-GithubProfile.propTypes = {
-
-};﻿
